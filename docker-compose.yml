@@ -1,0 +1,19 @@
+services:
+  back_api_graphql:
+    container_name: simple_api_graphql
+    build: .
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongo_db_service
+    restart: always
+    links:
+      - mongo_db_service
+  mongo_db_service:
+    image: mongo:latest
+    container_name: mongodbtodos_container
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db
