@@ -12,7 +12,7 @@ dbConnect()
 
 const server = new ApolloServer({
   typeDefs: typeDefsTodos,
-  resolvers: resolversTodos,
+  resolvers: resolversTodos
 });
 
 const { url } = await startStandaloneServer(server);
