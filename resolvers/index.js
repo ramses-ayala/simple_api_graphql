@@ -19,18 +19,15 @@ export const resolversTodos = {
       try {
         await descriptionValidator.validate({ description }, { abortEarly: false })
 
-        const exists = await checkTodoExists(description)
+        const exists = await checkTodoExists(description);
         if (exists) {
-          console.log('entro al if exists')
-          throw new Error('this item already exists !!!') 
+          console.log('entro al if exists');
+          return { data: { message: 'This item already exists !!!', errorType: 'DUPLICATED_RECORD' } };
         }
         const resp = await Todo.create({ description });
-        resp
+        return resp;
       } catch (error) {
-        console.log('entro al catch')
-        console.log('error: ', error)
         const err = ErrorHandler.formatError(error)
-        console.log('err: ',err)
         return err
       }
     },

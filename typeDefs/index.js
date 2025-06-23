@@ -12,15 +12,14 @@ export const typeDefsTodos = `
 
   type TodoError {
     message: String
+    errorType: String
+    errors: [String]
   }
 
   union dataTodoResponse = Todo | TodoError
 
   type createTodoResponse {
     data: dataTodoResponse
-    success: Boolean
-    httpCode: Int
-    errors: [String]
   }
 
   type Mutation {
